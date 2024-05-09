@@ -24,6 +24,15 @@
           Buscar
         </button>
       </div>
+      <div class="parent">
+        <vue-element-loading 
+        :active="show" 
+        spinner="spinner" 
+        color="#4f4f4f"
+        text="Carregando"
+        duration="1.0"
+        />
+      </div>
 
       <div class="endereco-info" v-if="esconderInfo" >
 
@@ -48,6 +57,8 @@
         </div>
 
       </div>  
+
+     
      
     </div>
    
@@ -60,8 +71,13 @@
 </template>
 
 <script>
+import VueElementLoading from "vue-element-loading";
+
 export default {
   name: 'App',
+  components:{
+    VueElementLoading,
+  },
   data(){
       return{
         endereco:{
@@ -72,21 +88,30 @@ export default {
           uf:'',
          
         },
-        esconderInfo:false
+        esconderInfo:false,
+        show:false,
       };
   },
   methods:{
      async buscarCep(){
      
         try{
+
+          this.show = true;
+
           const response = await fetch(`http://viacep.com.br/ws/${this.endereco.cep}/json/`)
           const data = await response.json();
 
-          this.endereco.logradouro = data.logradouro;
-          this.endereco.bairro = data.bairro;
-          this.endereco.localidade = data.localidade;
-          this.endereco.uf = data.uf;
-          this.esconderInfo = true;
+
+          setTimeout(() => {
+            this.endereco.logradouro = data.logradouro;
+            this.endereco.bairro = data.bairro;
+            this.endereco.localidade = data.localidade;
+            this.endereco.uf = data.uf;
+            this.esconderInfo = true;
+            this.show=false;
+            
+          }, 1500);
 
         }catch(error){
         
@@ -98,9 +123,7 @@ export default {
 </script>
 
 <style>
-body{
-  
-}
+
 section{
   font-family:Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -193,6 +216,9 @@ section{
 label{
   font-family: Verdana, Tahoma, sans-serif;
   font-weight: bold;
+}
+.parent{
+  margin-top: 50px;
 }
 
 </style>
