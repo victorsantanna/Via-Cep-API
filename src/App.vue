@@ -10,6 +10,7 @@
       <div class="form-group">
       
           <input 
+          
           type="text" 
           id="cep" 
           name="cep" 
@@ -24,15 +25,7 @@
           Buscar
         </button>
       </div>
-      <div class="parent">
-        <vue-element-loading 
-        :active="show" 
-        spinner="spinner" 
-        color="#4f4f4f"
-        text="Carregando"
-        duration="1.0"
-        />
-      </div>
+      
 
       <div class="endereco-info" v-if="esconderInfo" >
 
@@ -57,6 +50,15 @@
         </div>
 
       </div>  
+      <div class="parent">
+        <vue-element-loading 
+        :active="show" 
+        spinner="spinner" 
+        color="#4f4f4f"
+        text="Carregando"
+        duration="1.0"
+        />
+      </div>
 
      
      
@@ -96,7 +98,7 @@ export default {
      async buscarCep(){
      
         try{
-
+          this.esconderInfo = false
           this.show = true;
 
           const response = await fetch(`http://viacep.com.br/ws/${this.endereco.cep}/json/`)
@@ -111,6 +113,7 @@ export default {
             this.esconderInfo = true;
             this.show=false;
             
+            
           }, 1500);
 
         }catch(error){
@@ -124,6 +127,12 @@ export default {
 
 <style>
 
+body{
+  background-color: rgb(247, 250, 253);
+}
+h2{
+  margin-bottom: 10px;
+}
 section{
   font-family:Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -191,17 +200,16 @@ section{
 }
 
 .location-icon {
-  width: 400px;
+  width: 350px;
   height: auto; 
   margin-right: 20px;
   border-radius: 300px;
 }
 .input-info {
   width: 256px;
-  height: 20px;
-  border-top: 3px solid #4f4f4f;
-  border-radius: 5px;
-  font-family: Tahoma, Verdana, sans-serif;
+  height: 30px;
+  
+ font-family: Tahoma, Verdana, sans-serif;
   font-size: 15px;
 } 
 #uf{
