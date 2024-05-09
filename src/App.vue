@@ -25,26 +25,26 @@
         </button>
       </div>
 
-      <div class="endereco-info" >
+      <div class="endereco-info" v-if="esconderInfo" >
 
         <div class="info">
           <label for="logradouro">Logradouro: </label>
-          <span>{{this.endereco.logradouro}}</span>
+          <input type="text" name="logradouro" id="logradouro" v-model="endereco.logradouro" class="input-info">
         </div> 
         
         <div class="info">
           <label for="bairro">Bairro: </label>
-          <span>{{this.endereco.bairro}}</span>
+          <input type="text" name="bairro" id="bairro" v-model="endereco.bairro" class="input-info">
         </div>
 
         <div class="info">
           <label for="localidade">Localidade: </label>
-          <span>{{this.endereco.localidade}}</span>
+          <input type="text" name="localidade" id="localidade" v-model="endereco.localidade" class="input-info">
         </div>
        
         <div class="info">
           <label for="ud">UF: </label>
-          <span>{{this.endereco.uf}}</span>
+          <input type="text" name="uf" id="uf" v-model="endereco.uf" class="input-info">
         </div>
 
       </div>  
@@ -72,7 +72,7 @@ export default {
           uf:'',
          
         },
-        erro:''
+        esconderInfo:false
       };
   },
   methods:{
@@ -86,7 +86,7 @@ export default {
           this.endereco.bairro = data.bairro;
           this.endereco.localidade = data.localidade;
           this.endereco.uf = data.uf;
-          this.erro = '';
+          this.esconderInfo = true;
 
         }catch(error){
         
@@ -98,6 +98,9 @@ export default {
 </script>
 
 <style>
+body{
+  
+}
 section{
   font-family:Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -160,13 +163,37 @@ section{
 .info{
   padding: 10px;
   margin-top: 10px;
+  margin-left: 20px;
   font-family:Tahoma, sans-serif;
 }
 
 .location-icon {
-  width: 500px; /* Largura da imagem */
-  height: auto; /* Altura automática para manter a proporção */
-  margin-right: 20px; /* Espaçamento à direita da imagem */
+  width: 400px;
+  height: auto; 
+  margin-right: 20px;
+  border-radius: 300px;
 }
-  </style>
+.input-info {
+  width: 256px;
+  height: 20px;
+  border-top: 3px solid #4f4f4f;
+  border-radius: 5px;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 15px;
+} 
+#uf{
+  width: 330px;
+}
+#bairro{
+  width:298px ;
+}
+#logradouro{
+  width: 255px ;
+}
+label{
+  font-family: Verdana, Tahoma, sans-serif;
+  font-weight: bold;
+}
+
+</style>
 
