@@ -1,6 +1,6 @@
 <template>
   <section class="container-principal">
-    <img src="img\undraw_Current_location_re_j130.png" alt="LOCATION" class="location-icon">
+   
 
     <section class="container">
     
@@ -16,6 +16,8 @@
           placeholder="Digite o CEP"
           v-model="endereco.cep"
           @keyup.enter="buscarCep"
+          
+          
           >
           <button 
           @click="buscarCep"
@@ -73,6 +75,7 @@
 <script>
 import VueElementLoading from "vue-element-loading";
 
+
 export default {
   name: 'App',
   components:{
@@ -118,12 +121,19 @@ export default {
           console.log(error);
         }
       },
+
   },
 } 
 </script>
 
 <style>
 
+body{
+  background-color: rgb(247, 250, 253);
+}
+h2{
+  margin-bottom: 10px;
+}
 section{
   font-family:Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -146,6 +156,7 @@ section{
   border-radius: 4px;
   border: 1px solid #4f4f4f;
   font-size: 17px;
+  
 }
 .btn{
   border: none;
@@ -181,6 +192,7 @@ section{
  display: flex;
  flex-direction: column;
  align-items: flex-start;
+ 
 
 }
 .info{
@@ -198,10 +210,9 @@ section{
 }
 .input-info {
   width: 256px;
-  height: 20px;
-  border-top: 3px solid #4f4f4f;
-  border-radius: 5px;
-  font-family: Tahoma, Verdana, sans-serif;
+  height: 30px;
+  
+ font-family: Tahoma, Verdana, sans-serif;
   font-size: 15px;
 } 
 #uf{
@@ -220,6 +231,7 @@ label{
 .parent{
   margin-top: 50px;
 }
+
 
 </style>
 
